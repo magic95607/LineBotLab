@@ -1,5 +1,5 @@
 const Message = require('./Message')
-const {Line} = require('messaging-api-line')
+const { Line } = require('messaging-api-line')
 
 module.exports = class TextMessage extends Message {
     constructor(data) {
@@ -11,6 +11,6 @@ module.exports = class TextMessage extends Message {
     }
 
     toMessengerMessage() {
-        return {text: this.data}
+        return { text: this.data }
     }
 }

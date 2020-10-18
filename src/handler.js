@@ -1,4 +1,4 @@
-const {LineHandler} = require('bottender')
+const { LineHandler } = require('bottender')
 const olami = require('./nlp/Olami')
 
 const helpMessage = 'Hi~ 本 Bot 是用 http://bit.ly/2uz7wY4 開源程式碼打造\n\n' +
@@ -17,17 +17,17 @@ const helpMessage = 'Hi~ 本 Bot 是用 http://bit.ly/2uz7wY4 開源程式碼打
 
 exports.lineHandler = new LineHandler()
     .onFollow(async context => {
-	    await context.replyText(helpMessage)
+        await context.replyText(helpMessage)
     })
     .onText('\/help', async context => {
-	    await context.replyText(helpMessage)
+        await context.replyText(helpMessage)
     })
     .onText(async context => {
-            const text = context.event.text
-            const reply = await olami.nli(text)
-            await context.reply([reply.toLineMessage()])
-        }
+        const text = context.event.text
+        const reply = await olami.nli(text)
+        await context.reply([reply.toLineMessage()])
+    }
     )
     .onError(async (context, err) => {
-	    await context.replyText('對不起呦~ 我需要多一點時間來處理 Q_Q')
+        await context.replyText('對不起呦~ 我需要多一點時間來處理 Q_Q')
     })

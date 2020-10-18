@@ -22,19 +22,19 @@ class Olami {
                 timestamp: timestamp,
                 sign: md5(`${this.appSecret}api=nliappkey=${this.appKey}timestamp=${timestamp}${this.appSecret}`),
                 cusid: cusid,
-                rq: JSON.stringify({'data_type': 'stt', 'data': {'input_type': this.inputType, 'text': text}})
+                rq: JSON.stringify({ 'data_type': 'stt', 'data': { 'input_type': this.inputType, 'text': text } })
             }
         }).then(response => {
-		const nli = response.data.data.nli[0];
+            const nli = response.data.data.nli[0];
             return this._intentDetection(nli)
         })
     }
 
-_intentDetection(nli) {
+    _intentDetection(nli) {
         const type = nli.type
         const desc = nli.desc_obj
         const data = nli.data_obj
-	const semantic = nli.semantic
+        const semantic = nli.semantic
 
         function handleSelectionType(desc) {
             const descType = desc.type
@@ -50,7 +50,7 @@ _intentDetection(nli) {
                     return new TextMessage('對不起，你說的我還不懂，能換個說法嗎？')
             }
         }
-	async function handleMusicKKBOXType(semantic) {
+        async function handleMusicKKBOXType(semantic) {
             function getKeyWord(semantic, dataType) {
                 function getSlotValueByName(slotName) {
                     return semantic.slots.filter(slot => slot.name === slotName)[0].value
@@ -97,8 +97,8 @@ _intentDetection(nli) {
                 return new TextMessage(data[0].content)
             case 'cooking':
                 return new TextMessage(data[0].content)
-	    case 'music_kkbox':
-		return handleMusicKKBOXType(semantic[0])
+            case 'music_kkbox':
+                return handleMusicKKBOXType(semantic[0])
             default:
                 return new TextMessage(desc.result)
         }

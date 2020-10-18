@@ -1,5 +1,5 @@
 const Message = require('./Message')
-const {Line} = require('messaging-api-line')
+const { Line } = require('messaging-api-line')
 
 module.exports = class KKBOXMessage extends Message {
     constructor(data) {
@@ -19,7 +19,7 @@ module.exports = class KKBOXMessage extends Message {
                 }]
             }
         }).slice(0, 10)
-        return Line.createCarouselTemplate('為您播放', columns, {imageAspectRatio: 'square', imageSize: 'cover'})
+        return Line.createCarouselTemplate('為您播放', columns, { imageAspectRatio: 'square', imageSize: 'cover' })
     }
 
     toMessengerMessage() {

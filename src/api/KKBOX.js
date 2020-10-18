@@ -1,5 +1,5 @@
 const config = require('../../config')
-const {Auth, Api} = require('@kkbox/kkbox-js-sdk')
+const { Auth, Api } = require('@kkbox/kkbox-js-sdk')
 
 module.exports = class KKBOX {
     static init(clientId = config.kkbox.id, clientSecret = config.kkbox.secret) {
